@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>邀请分享</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.comment{
+				width: 100%;
+				height: 100%;
+				background-color: #000000;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				font-size: 24px;
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="comment">
+			请点击右上角在浏览器打开
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				function getInfo(variable){
+					var query = window.location.search.substring(1);
+					var vars = query.split("&");
+					for(var i=0;i<vars.length;i++){
+						var pair = vars[i].split("=");
+						if(pair[0] == variable){
+							return pair[1];
+						}
+					}
+					return(false);
+				}
+				var invitationCode = getInfo("invitationCode");
+				function isWeChat(){
+					var ua = window.navigator.userAgent.toLowerCase();
+					if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				if(isWeChat()){}else{
+					if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)){
+						var loadDateTime = new Date();
+						window.setTimeout(function(){
+							var timeOutDateTime = new Date();
+							if(timeOutDateTime - loadDateTime < 5000){
+								window.location = "https://service.dcloud.net.cn/build/download/17451620-ffa0-11e9-b83a-2f3307930f66";
+							}else{
+								window.close();
+							}
+						},1000);
+						window.location = "openShangPinApp://=invitation="+invitationCode;
+					}else if(navigator.userAgent.match(/android/i)){
+						try{
+							window.location = "openShangPinApp://=invitation="+invitationCode;
+							setTimeout(function(){
+								window.location= "http://39.105.168.135:8080/didi/shangpin.apk";
+							},500);
+						}catch(e){}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

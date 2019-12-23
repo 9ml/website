@@ -1,0 +1,294 @@
+<template>
+	<div class="container">
+		<div class="topMs">
+			<image class="tm-img" src="/static/icon/nav_back_zb.png" mode=""></image>
+		</div>
+		<list :loadmoreoffset="wHeight" ref="listBox" :show-scrollbar="false" :pagingEnabled="true" :scrollable="true">
+			<cell v-for="(v,v_idx) in dataList" :key="v_idx" v-if="reLoad">
+				<div ref="item" class="bodyMs" :style="getSize">
+					<div class="videoMs" :style="getSize">
+						<video :style="getSize" id="myVideo" ref="myVideos" :src="v.vUrl" :autoplay="v.state" controls></video>
+					</div>
+					<div class="infoMs" @appear="getPages(v_idx)">
+						<div class="im-user">
+							<div class="iu-header">
+								<image class="ih-header" src="/static/images/img_avatar_cpdsp.png" mode=""></image>
+							</div>
+							<div class="iu-icon">
+								<image class="ii-icon" src="/static/icon/icon_gz_cpdsp.png" mode=""></image>
+							</div>
+						</div>
+						<div class="im-item">
+							<div class="item-icon">
+								<image class="ii-like" src="/static/icon/icon_dx_cpdsp.png" mode=""></image>
+							</div>
+							<div class="item-nums">
+								<text class="in-fonts">{{pages}}</text>
+							</div>
+						</div>
+						<div class="im-item">
+							<div class="item-icon">
+								<image class="ii-like" src="/static/icon/icon_xx_cpdsp.png" mode=""></image>
+							</div>
+							<div class="item-nums">
+								<text class="in-fonts">403</text>
+							</div>
+						</div>
+						<div class="im-item">
+							<div class="item-icon">
+								<image class="ii-like" src="/static/icon/icon_fx_cpdsp.png" mode=""></image>
+							</div>
+							<div class="item-nums">
+								<text class="in-fonts">1136</text>
+							</div>
+						</div>
+					</div>
+					<div class="bomMs">
+						<div class="bm-link">
+							<div class="bl-icon">
+								<image class="bi-shopCar" src="/static/icon/icon_gwc_cpdsp.png" mode=""></image>
+							</div>
+							<div class="bl-name">
+								<text class="bn-fonts">新鲜水果</text>
+							</div>
+						</div>
+						<div class="bl-title">
+							<text class="bt-fonts">您的选择，一定不会错！我们会用100%的诚心，100%的服务，换取您200%的满意</text>
+						</div>
+						<div class="bl-adress">
+							<div class="ba-icon">
+								<image class="bi-adress" src="/static/icon/icon_dz_cpdsp_1.png" mode=""></image>
+							</div>
+							<div class="ba-info">
+								<text class="bi-fonts">江苏省徐州市铜山区</text>
+							</div>
+						</div>
+						<div class="bt-postVideo">
+							<image class="bp-icon" src="/static/icon/icon_fsp_cpdsp.png" mode=""></image>
+						</div>
+					</div>
+				</div>
+			</cell>
+		</list>
+	</div>
+</template>
+
+<script>
+	var _self;
+	export default {
+		data : {
+			wHeight : 0,
+			pages : 0,
+			dataList : [
+				{
+					vUrl : 'http://baobab.kaiyanapp.com/api/v1/playUrl?vid=129764&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss',
+					state : true
+				},
+				{
+					vUrl : '/static/images/test2.mp4',
+					state : false
+				},
+				{
+					vUrl : '/static/images/test.mp4',
+					state : false
+				},
+				{
+					vUrl : 'https://cloud.video.taobao.com//play/u/1768198696/p/1/e/6/t/1/239439242603.mp4',
+					state : false
+				}
+			],
+			getSize : {
+				'width': "750rpx",
+				'height':0
+			},
+			reLoad : true
+		},
+		watch:{
+			// pages(pages,oldPages){
+			// 	_self.dataList[pages].state = true;
+			// 	_self.dataList[oldPages].state = false;
+			// }
+		},
+		onLoad() {
+			_self = this;
+			_self.wHeight = uni.getSystemInfoSync().windowHeight;
+			_self.getSize.height = _self.wHeight;
+		},
+		methods:{
+		    getPages(idx){
+				_self.dataList.forEach((i,i_idx)=>{
+					if(i_idx === idx){
+						i.state = true
+						_self.reLoad = false;
+						_self.reLoad = true;
+					}else{
+						i.state = false
+						_self.reLoad = false;
+						_self.reLoad = true;
+					}
+				});
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.container{
+		flex: 1;
+	}
+	.topMs{
+		width: 90%;
+		height: 100rpx;
+		position: fixed;
+		top: 44rpx;
+		z-index : 999;
+	}
+	.tm-img{
+		width: 20rpx;
+		height: 36rpx;
+		margin-left: 30rpx;
+	}
+	.bodyMs{
+		position: relative;
+	}
+	.infoMs{
+		width: 100rpx;
+		position: absolute;
+		right: 20rpx;
+		bottom: 260rpx;
+	}
+	.im-user{
+		width: 100rpx;
+		height: 130rpx;
+		margin-bottom: 40rpx;
+		position: relative;
+	}
+	.iu-header{
+		width: 100rpx;
+		height: 100rpx;
+		border-radius: 50%;
+	}
+	.ih-header{
+		width: 100rpx;
+		height: 100rpx;
+	}
+	.iu-icon{
+		width: 100rpx;
+		height: 50rpx;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		bottom: 0;
+		z-index: 9;
+	}
+	.ii-icon{
+		width: 44rpx;
+		height: 44rpx;
+	}
+	.im-item{
+		width: 100rpx;
+		height: 130rpx;
+		margin-bottom: 30rpx;
+	}
+	.item-icon{
+		width: 100rpx;
+		align-items: center;
+	}
+	.ii-like{
+		width: 70rpx;
+		height: 66rpx;
+	}
+	.in-fonts{
+		width: 100rpx;
+		height: 64rpx;
+		line-height: 64rpx;
+		font-size: 26rpx;
+		text-align: center;
+		color: #FFFFFF;
+	}
+	.bomMs{
+		width: 750rpx;
+		height: 250rpx;
+		position: absolute;
+		bottom: 30rpx;
+	}
+	.bm-link{
+		width: 200rpx;
+		height: 60rpx;
+		background-color: rgba(0,0,0,.4);
+		border-radius: 30rpx;
+		margin: 0 0 20rpx 20rpx;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+	.bl-icon{
+		width: 80rpx;
+		height: 60rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	.bi-shopCar{
+		width: 36rpx;
+		height: 36rpx;
+	}
+	.bl-name{
+		width: 120rpx;
+		height: 60rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	.bn-fonts{
+		height: 60rpx;
+		line-height: 60rpx;
+		font-size: 26rpx;
+		color: #FFFFFF;
+	}
+	.bl-title{
+		margin: 0 0 20rpx 20rpx;
+		position: relative;
+	}
+	.bt-fonts{
+		width: 550rpx;
+		height: 80rpx;
+		line-height: 40rpx;
+		font-size: 26rpx;
+		color: #FFFFFF;
+	}
+	.bl-adress{
+		margin: 0 0 20rpx 20rpx;
+		flex-direction: row;
+	}
+	.ba-icon{
+		width: 40rpx;
+		height: 50rpx;
+		align-items: center;
+		justify-content: center;
+	}
+	.bi-adress{
+		width: 36rpx;
+		height: 44rpx;
+	}
+	.ba-info{
+		margin-left: 10rpx;
+	}
+	.bi-fonts{
+		width: 600rpx;
+		height: 50rpx;
+		font-size: 26rpx;
+		color: #FFFFFF;
+		line-height: 50rpx;
+	}
+	.bt-postVideo{
+		width: 140rpx;
+		height: 140rpx;
+		position: absolute;
+		right: 40rpx;
+		top: 60rpx;
+		z-index: 9;
+	}
+	.bp-icon{
+		width: 120rpx;
+		height: 120rpx;
+	}
+</style>

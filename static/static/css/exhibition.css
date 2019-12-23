@@ -1,0 +1,56 @@
+.mains{
+	background-color: rgba(0,0,0,.6);
+}
+.mainAll{
+	width: 80%;
+	margin: 0 auto;
+	padding-bottom: 30px;
+	border-radius: 20px;
+	background-color: rgba(255,255,255,.8);
+}
+.mainAll h1{
+	text-align: center;
+	padding-top: 30px;
+	color: red;
+}
+.mainAll .items{
+	width: 80%;
+	margin: 30px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	border-top: 1px solid #000;
+}
+.mainAll .items .img{
+	width: 200px;
+	height: 200px;
+	background-color: #000;
+}
+.mainAll .items .info{
+	width: 80%;
+	height: 200px;
+	margin-left: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+.mainAll .items .info .desc{
+	width: 70%;
+}
+.mainAll .items .info .btn{
+	width: 20%;
+	margin-top: 100px;
+	text-align: right;
+}
+.mainAll .items .info .desc h2{
+	font-size: 24px;
+}
+.mainAll .items .info .desc h3{
+	padding-top: 10px;
+	font-size: 18px;
+}
+.mainAll .items .info .desc p{
+	font-size: 16px;
+	padding-top: 10px;
+	color: #555;
+}

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>国际展会</title>
+    <link rel="stylesheet" type="text/css" href="../static/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/exhibition.css"/>
+    <link rel="stylesheet" href="../static/css/all.min.css"/>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/function.js"></script>
+    <script src="../static/layui/layui.js"></script>
+    <!--[if IE 8]>
+        <script type="text/javascript" src="../static/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 顶部 -->
+    <div class="layui-row">
+        <!-- 背景 -->
+        <div class="bg">
+            <img src="../static/images/bg1.jpg">
+        </div>
+        <!-- 头部 -->
+        <div class="header layui-row col-xs-12">
+            <!-- LOGO -->
+            <div class="logo layui-col-md1 layui-col-md-offset2">
+                <img src="../static/images/logo.jpg">
+            </div>
+            <!-- 导航 -->
+            <div class="layui-col-md7 nav layui-col-md-offset1">
+                <ul class="layui-nav" lay-filter="">
+                    <li class="layui-nav-item">
+                        <a href="./index.html">首页</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="./about.html">关于乌克兰</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="./superiority.html">留学</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="./travel.html">景点介绍</a>
+                    </li>
+                    <li class="layui-nav-item layui-this">
+                        <a href="#">国际展会</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="">签证服务</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="">关于我们</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 注册 登陆 -->
+            <div class="user layui-col-md1">
+                <a href="">登陆</a>
+                <span>|</span>
+                <a href="">注册</a>
+            </div>
+        </div>
+        <!-- 在线联系 -->
+        <div class="commit">
+            <div class="out">
+                <img src="../static/images/kefu.png">
+            </div>
+            <div class="fonts">
+                <p>在线咨询</p>
+            </div>
+        </div>
+    </div>
+    <!-- 轮播图 -->
+    <div class="layui-row">
+        <div class="layui-carousel" id="banner">
+            <div carousel-item>
+                <div>
+                    <img src="../static/images/banner1.jpg">
+                </div>
+                <div>
+                    <img src="../static/images/banner2.jpg">
+                </div>
+                <div>
+                    <img src="../static/images/banner3.jpg">
+                </div>
+                <div>
+                    <img src="../static/images/banner4.jpg">
+                </div>
+                <div>
+                    <img src="../static/images/banner5.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="mains layui-row">
+        <div class="mainAll">
+            <h1>在基辅组织和举办展览</h1>
+            <div class="items">
+                <div class="img"></div>
+                <div class="info">
+                    <div class="desc">
+                        <h2>国际专业展览</h2>
+                        <h3>2019年4月5日至2019年4月5日</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <a class="layui-btn layui-btn-normal">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="img"></div>
+                <div class="info">
+                    <div class="desc">
+                        <h2>国际专业展览</h2>
+                        <h3>2019年4月5日至2019年4月5日</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <a class="layui-btn layui-btn-normal">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="img"></div>
+                <div class="info">
+                    <div class="desc">
+                        <h2>国际专业展览</h2>
+                        <h3>2019年4月5日至2019年4月5日</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <a class="layui-btn layui-btn-normal">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="img"></div>
+                <div class="info">
+                    <div class="desc">
+                        <h2>国际专业展览</h2>
+                        <h3>2019年4月5日至2019年4月5日</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <a class="layui-btn layui-btn-normal">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="img"></div>
+                <div class="info">
+                    <div class="desc">
+                        <h2>国际专业展览</h2>
+                        <h3>2019年4月5日至2019年4月5日</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <a class="layui-btn layui-btn-normal">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="layui-row">
+        <div id="footer">
+            <div class="footer_a">
+                <ul>
+                    <li>
+                        <div class="lx">
+                            <a href="#" title="">
+                                <img src="../static/images/weibo.png" style="width: 60px">
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lx">
+                            <a href="#" title="">
+                                <img src="../static/images/QQ.png" style="width: 60px">
+                            </a>
+                            <a class="hover_show1" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=85211376&site=qq&menu=yes">
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lx">
+                            <a class="hover_show" href="#1" title="">
+                                <img src="../static/images/weixin.png" style="width: 60px">
+                            </a>
+                        </div>
+                        <img class="ewm" src="../static/images/erweima.png">
+                    </li>
+                </ul>
+            </div>
+            <div class="footer_b">
+                <ul>
+                    <li>电话：010-22228888</li>
+                    <li>地址：北京市海淀区中关村东路105号A塔2201室</li>
+                    <li>邮箱：tech@abcdef.com</li>
+                </ul>
+            </div>
+        </div>
+        <div id="footerEnd">
+            <P>粤ICP证00000X号 copyright ©2012</P>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $("#cardArea").cardArea();
+            $("#footer>.footer_a>ul>li>.lx>.hover_show").on("mouseover",function(){
+                $("#footer>.footer_a>ul>li>img.ewm").css("transform","translate(0,-124px")
+            })
+            $("#footer>.footer_a>ul>li>.lx>.hover_show").on("mouseout",function(){
+                $("#footer>.footer_a>ul>li>img.ewm").css("transform","translate(0,0")
+            })
+        });
+        layui.use(['element','carousel'], function(){
+            var element = layui.element
+            ,   carousel = layui.carousel;
+            // 轮播图
+            carousel.render({
+                elem: '#banner'
+                ,width: '100%'
+                ,height: '600px'
+                ,arrow: 'hover'
+                ,interval: 4000
+                // ,anim: 'updown'
+            });
+        });
+    </script>
+</body>
+</html>

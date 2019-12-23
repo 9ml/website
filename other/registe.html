@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>注册</title>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background-color: #F1F1F1;
+			}
+			.inp-item{
+				width: 92%;
+				height: 50px;
+				margin: 10px auto 10px;
+				background-color: #FFFFFF;
+				border-radius: 6px;
+				position: relative;
+				display: flex;
+				overflow: hidden;
+			}
+			.inp-item .ii-left{
+				width: 20%;
+				height: 50px;
+				font-size: 16px;
+				text-align: center;
+				line-height: 50px;
+			}
+			.inp-item .ii-right{
+				width: 80%;
+				height: 50px;
+			}
+			.inp-item .ii-right input{
+				width: 100%;
+				height: 100%;
+				font-size: 16px;
+				border: none;
+				outline: none;
+			}
+			.inp-item .codeFonts{
+				width: 30%;
+				height: 50px;
+				position: absolute;
+				z-index: 999;
+				text-align: center;
+				line-height: 50px;
+				right: 0;
+				font-size: 14px;
+			}
+			.inp-item .get{
+				color: #FF584C;
+			}
+			.inp-item .got{
+				color: #666666;
+				display: none;
+			}
+			.btns{
+				width: 140px;
+				height: 40px;
+				background-color: #FF584C;
+				margin: 40px auto 0;
+				font-size: 18px;
+				text-align: center;
+				line-height: 40px;
+				border-radius: 20px;
+				color: #FFFFFF;
+			}
+			#weChatOpen{
+				width: 100%;
+				height: 100%;
+				background-color: #000000;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				font-size: 24px;
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="normalOpen">
+			<div class="inp-item">
+				<div class="ii-left">
+					手机号
+				</div>
+				<div class="ii-right">
+					<input id="phone" type="text" placeholder="输入手机号">
+				</div>
+			</div>
+			<div class="inp-item">
+				<div class="ii-left">
+					验证码
+				</div>
+				<div class="ii-right">
+					<input id="code" type="text" placeholder="输入验证码">
+				</div>
+				<div class="codeFonts get" id="getCode">
+					获取验证码
+				</div>
+				<div class="codeFonts got" id="gotCode"></div>
+			</div>
+			<div class="inp-item">
+				<div class="ii-left">
+					密码
+				</div>
+				<div class="ii-right">
+					<input id="pwd" type="password" placeholder="输入密码">
+				</div>
+			</div>
+			<div class="btns" id="registe">
+				注册
+			</div>
+			<div class="btns" id="downApp">
+				下载
+			</div>
+		</div>
+		<div id="weChatOpen">
+			请点击右上角在浏览器打开
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			var phone = $("#phone")
+			,	code = $("#code")
+			,	pwd = $("#pwd")
+			,	getCode = $("#getCode")
+			,	gotCode = $("#gotCode")
+			,	registe = $("#registe")
+			,	downApp = $("#downApp")
+			,	normalOpen = $("#normalOpen")
+			,	weChatOpen = $("#weChatOpen")
+			,	inviteCode = getInfo("invitationCode");
+			if(isWeChat()){
+				normalOpen.css("display","none");
+			}else{
+				weChatOpen.css("display","none");
+			}
+			getCode.click(function(){
+				if(!phone.val()){
+					alert("手机号不能为空");
+					return false;
+				}else if(!(/^1[3456789]\d{9}$/.test(phone.val()))){
+					alert("手机号格式不正确");
+					return false;
+				}else{
+					$.ajax({
+						method : "POST",
+						url : "http://47.104.185.192:8080/jeeplus/sendCode/sendRegisterCode",
+						dataType : "JSON",
+						data : {
+							userPhone: phone.val()
+						},
+						success : (res)=>{
+							console.log(res);
+							if(res.meta.code === 200){
+								alert("发送成功,请注意查收");
+								getCode.css("display","none");
+								gotCode.css("display","block");
+								let seconds = 60;
+								let timer = setInterval(()=>{
+									seconds --
+									gotCode.text("请"+seconds+"秒后再试");
+									if(seconds === 0){
+										getCode.css("display","block");
+										gotCode.css("display","none");
+										clearInterval(timer);
+									}
+								},1000);
+							}else{
+								alert(res.meta.msg);
+							}
+						}
+					});
+				}
+			});
+			registe.click(function(){
+				if(!phone.val()){
+					alert("手机号不能为空");
+					return false;
+				}else if(!(/^1[3456789]\d{9}$/.test(phone.val()))){
+					alert("手机号格式不正确");
+					return false;
+				}else if(!code.val()){
+					alert("验证码不能为空");
+					return false;
+				}else if(!pwd.val()){
+					alert("密码不能为空");
+					return false;
+				}else{
+					$.ajax({
+						method : "POST",
+						url : "http://47.104.185.192:8080/jeeplus/userRegister/registerForPhonePwd",
+						dataType : "JSON",
+						data : {
+							userPhone: phone.val(),
+							code : code.val(),
+							userPwd : pwd.val(),
+							inviteCode : inviteCode
+						},
+						success : (res)=>{
+							console.log(res);
+							if(res.meta.code === 200){
+								alert("注册成功");
+								setTimeout(()=>{
+									window.location.href = "http://47.104.185.192:8080/didi/shangpin.apk"
+								},2000);
+							}else{
+								alert(res.meta.msg);
+							}
+						}
+					});
+				}
+			});
+			downApp.click(function(){
+				window.location.href = "http://47.104.185.192:8080/didi/shangpin.apk"
+			});
+			function getInfo(variable){
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for(var i=0;i<vars.length;i++){
+					var pair = vars[i].split("=");
+					if(pair[0] == variable){
+						return pair[1];
+					}
+				}
+				return(false);
+			}
+			function isWeChat(){
+				var ua = window.navigator.userAgent.toLowerCase();
+				if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		});
+	</script>
+</html>
