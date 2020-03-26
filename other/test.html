@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拖拽效果-js</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+    body {
+        overflow: hidden;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+ 
+    .container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200px;
+        height: 200px;
+        margin: 200px;
+        background: red;
+    }
+    </style>
+</head>
+ 
+<body>
+    <div class="container"></div>
+    <script type="text/javascript">
+    function drap(obj) {
+        obj.addEventListener('mousedown', start);
+ 
+        function start(event) {
+            // 鼠标左键
+            if (event.button == 0) {
+                // getComputedStyle(obj)['margin-left'] return XXpx需要转成整型
+                // 如果有obj有margin值而不加这个数组拖拽会出现位置偏移
+                offsetX = event.pageX - obj.offsetLeft + parseInt(getComputedStyle(obj)['margin-left']);
+                offsetY = event.pageY - obj.offsetTop + parseInt(getComputedStyle(obj)['margin-top']);
+                // 绑定事件，同样unbind解绑定，此效果的实现最后必须要解绑定，否则鼠标松开后拖拽效果依然存在
+                //movemove事件必须绑定到$(document)上，鼠标移动是在整个屏幕上的
+                document.addEventListener('mousemove', move);
+                //此处的$(document)可以改为obj
+                document.addEventListener('mouseup', stop);
+            }
+            return false;//阻止默认事件或冒泡
+        }
+ 
+        function move(event) {
+            obj.style.left = (event.pageX - offsetX) + 'px';
+            obj.style.top = (event.pageY - offsetY) + 'px';
+            return false;//阻止默认事件或冒泡
+        }
+ 
+        function stop(envet) {
+            document.removeEventListener('mousemove', move);
+            document.removeEventListener('mouseup', stop);
+        }
+    }
+    var obj = document.getElementsByClassName('container')[0];
+    drap(obj);
+    </script>
+</body>
+ 
+</html>
